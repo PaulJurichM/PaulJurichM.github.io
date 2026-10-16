@@ -213,7 +213,8 @@ def build_creative():
         f'title="{esc(v["title"])}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
         f'gyroscope; picture-in-picture" allowfullscreen></iframe></div><h3>{esc(v["title"])}</h3>'
         + (f'<p>{esc(v["about"])}</p>' if v.get("about") else "") + "</figure>" for v in vids)
-    page("/creative/video/", "Видео", back + '<h1>Видео</h1><p class="lead">Ролики моего авторства с YouTube.</p>'
+    page("/creative/video/", "Видео", back + '<h1>Видео</h1><p class="lead">Ролики моего авторства. Все они есть и на моём '
+         '<a href="https://www.youtube.com/@PaulJurich">канале на YouTube</a>.</p>'
          + (vhtml or empty("Ролики скоро появятся.")), here="/creative/", desc="Видео Павла Малькова")
 
     mus = load("creative/music.json", {"base": "", "albums": []})
