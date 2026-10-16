@@ -7,7 +7,7 @@ src/creative/music.json. Для каждого трека, которого ещ
 прописывает теги и обложку альбома, загружает файл в релиз.
 Уже загруженные треки не трогает, поэтому повторный запуск безопасен.
 """
-import json, os, subprocess, sys, tempfile, time, urllib.request
+import json, os, shutil, subprocess, sys, tempfile, time, urllib.request
 
 MUSIC = "src/creative/music.json"
 
@@ -39,7 +39,7 @@ def assets(tag):
 def main():
     m = json.load(open(MUSIC, encoding="utf-8"))
     artist = m.get("artist", "")
-    failed = []
+    failed, used = [], set()
     for a in m["albums"]:
         tag, n = a["tag"], len(a["tracks"])
         have = assets(tag)
@@ -56,7 +56,12 @@ def main():
             ready = []
             for i, t in todo:
                 mp4, mp3 = os.path.join(tmp, "src.mp4"), os.path.join(tmp, t["file"])
-                if not fetch(f"https://cdn1.suno.ai/{t['clip']}.mp4", mp4):
+                local = os.path.join("incoming", t["clip"] + ".mp3")
+                if os.path.exists(local):
+                    # mp3, скачанный из Suno вручную: звук не перекодируем, только теги и обложка
+                    shutil.copy(local, mp4)
+                    used.add(local)
+                elif not fetch(f"https://cdn1.suno.ai/{t['clip']}.mp4", mp4):
                     failed.append(f"{a['title']} — {t['title']}")
                     continue
                 cmd = ["ffmpeg", "-v", "error", "-y", "-i", mp4]
@@ -65,7 +70,8 @@ def main():
                             "-disposition:v", "attached_pic", "-metadata:s:v", "comment=Cover (front)"]
                 else:
                     cmd += ["-map", "0:a"]
-                cmd += ["-map_metadata", "-1", "-c:a", "libmp3lame", "-q:a", "2", "-id3v2_version", "3",
+                codec = ["-c:a", "copy"] if os.path.exists(os.path.join("incoming", t["clip"] + ".mp3")) else ["-c:a", "libmp3lame", "-q:a", "2"]
+                cmd += ["-map_metadata", "-1", *codec, "-id3v2_version", "3",
                         "-metadata", f"title={t['title']}", "-metadata", f"artist={artist}",
                         "-metadata", f"album={a['title']}", "-metadata", f"track={i}/{n}", mp3]
                 if sh(*cmd, check=False) != 0:
@@ -76,6 +82,12 @@ def main():
                 print(f"  готов {t['file']}")
             for k in range(0, len(ready), 10):
                 sh("gh", "release", "upload", tag, *ready[k:k + 10], "--clobber")
+    if used:
+        # загруженные вручную файлы больше не нужны в репозитории
+        sh("git", "rm", "-q", *sorted(used))
+        sh("git", "-c", "user.name=github-actions[bot]", "-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com",
+           "commit", "-q", "-m", "Музыка: загруженные mp3 перенесены в релизы")
+        sh("git", "push", "-q")
     if failed:
         print("Не удалось:", *failed, sep="\n  ")
         sys.exit(1)
