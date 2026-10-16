@@ -1,0 +1,263 @@
+#!/usr/bin/env python3
+"""Собирает malari.me из папки src/ в папку docs/ (её публикует GitHub Pages).
+
+Новая заметка в блог: положить src/blog/ГГГГ-ММ-ДД-адрес.md и запустить  python3 build.py
+(или просто закоммитить файл: GitHub Actions соберёт сайт сам).
+"""
+import html, json, os, re, shutil
+
+SRC, OUT = "src", "docs"
+NAME = "Павел Мальков"
+PEN = "Павел Юрич"
+MONTHS = "января февраля марта апреля мая июня июля августа сентября октября ноября декабря".split()
+
+NAV = [("/blog/", "Блог"), ("/work/", "Работа"), ("/creative/", "Творчество")]
+
+
+# ---------- чтение и разметка ----------
+
+def read(path):
+    raw = open(path, encoding="utf-8").read()
+    meta, body = {}, raw
+    m = re.match(r"---\n(.*?)\n---\n?(.*)", raw, re.S)
+    if m:
+        for line in m.group(1).splitlines():
+            if ":" in line:
+                k, v = line.split(":", 1)
+                meta[k.strip()] = v.strip()
+        body = m.group(2)
+    return meta, body.strip()
+
+
+def load(name, default):
+    p = os.path.join(SRC, name)
+    return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else default
+
+
+def inline(text):
+    t = html.escape(text, quote=False)
+    t = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", r'<img src="\2" alt="\1" loading="lazy">', t)
+    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
+    t = re.sub(r"\*\*([^*\n]+)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"\*([^*\n]+)\*", r"<em>\1</em>", t)
+    return t
+
+
+def md(body):
+    """Небольшой Markdown: абзацы, ## заголовки, списки «- », цитаты «> », ссылки, картинки, курсив."""
+    out = []
+    for block in re.split(r"\n\s*\n", body.strip()):
+        lines = block.strip("\n").split("\n")
+        if not block.strip():
+            continue
+        if lines[0].startswith("## "):
+            out.append(f"<h2>{inline(lines[0][3:].strip())}</h2>")
+            lines = lines[1:]
+            if not lines:
+                continue
+        if all(l.startswith("- ") for l in lines):
+            out.append("<ul>" + "".join(f"<li>{inline(l[2:])}</li>" for l in lines) + "</ul>")
+        elif all(l.startswith(">") for l in lines):
+            out.append("<blockquote><p>" + "<br>".join(inline(re.sub(r"^>\s?", "", l)) for l in lines) + "</p></blockquote>")
+        else:
+            out.append("<p>" + " ".join(inline(l.strip()) for l in lines) + "</p>")
+    return "\n".join(out)
+
+
+def rudate(iso):
+    y, m, d = iso.split("-")
+    return f"{int(d)} {MONTHS[int(m) - 1]} {y}"
+
+
+def esc(s):
+    return html.escape(s or "")
+
+
+# ---------- каркас страницы ----------
+
+def page(path, title, content, here="", desc="", extra=""):
+    cur = ' aria-current="page"'
+    nav = "".join(f'<a href="{u}"{cur if here == u else ""}>{t}</a>' for u, t in NAV)
+    full = f"{title} — {NAME}" if title else NAME
+    doc = f"""<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(full)}</title>
+<meta name="description" content="{esc(desc)}">
+<script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">{NAME}</a>
+  <nav>{nav}<button class="ctl" id="theme" type="button" aria-label="Переключить тему">Тёмная</button></nav>
+</header>
+<main>
+{content}
+</main>
+{extra}
+<footer>© {NAME}, 2026 · проза под именем {PEN} · <a href="https://t.me/MalariNeo">Телеграм</a></footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>
+"""
+    dest = os.path.join(OUT, path.strip("/"), "index.html") if not path.endswith(".html") else os.path.join(OUT, path.strip("/"))
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w", encoding="utf-8").write(doc)
+
+
+def crumbs(*items):
+    return '<p class="crumbs">' + " · ".join(f'<a href="{u}">{t}</a>' for u, t in items) + "</p>"
+
+
+def empty(text):
+    return f'<p class="empty">{text}</p>'
+
+
+# ---------- разделы ----------
+
+def build_about(posts):
+    meta, body = read(os.path.join(SRC, "about.md"))
+    photo = meta.get("photo", "")
+    pic = (f'<img class="photo" src="{esc(photo)}" alt="{NAME}">' if photo
+           else '<div class="photo" aria-hidden="true">ПМ</div>')
+    head = (f'<section class="about">{pic}<div><h1>{NAME}</h1>'
+            f'<p class="alias">в прозе — {PEN}</p></div></section>')
+    cards = ('<p class="label">Разделы</p><div class="cards">'
+             '<a class="card" href="/blog/"><b>Блог</b><span>Новости и мысли: о работе, о книгах, о том, что получилось и что нет.</span></a>'
+             '<a class="card" href="/work/"><b>Работа</b><span>Как я встраиваю ИИ в работу системного аналитика. Проекты и пет-проекты.</span></a>'
+             '<a class="card" href="/creative/"><b>Творчество</b><span>Проза, хронотопы чужих книг, видео и музыка.</span></a>'
+             '</div>')
+    last = ""
+    if posts:
+        p = posts[0]
+        last = ('<p class="label">Последняя заметка</p><ul class="list">'
+                f'<li><a href="/blog/{p["slug"]}/"><b>{esc(p["title"])}</b><small>{rudate(p["date"])}</small></a></li></ul>')
+    page("/", "", head + f'<div class="prose">{md(body)}</div>' + cards + last,
+         desc=meta.get("description", ""))
+
+
+def build_blog():
+    d = os.path.join(SRC, "blog")
+    posts = []
+    for f in sorted(os.listdir(d), reverse=True) if os.path.isdir(d) else []:
+        if not f.endswith(".md") or f.startswith("_"):
+            continue
+        meta, body = read(os.path.join(d, f))
+        if meta.get("draft"):
+            continue
+        m = re.match(r"(\d{4}-\d{2}-\d{2})-(.+)\.md$", f)
+        if not m:
+            continue
+        posts.append({"date": m.group(1), "slug": m.group(2), "title": meta.get("title", m.group(2)),
+                      "summary": meta.get("summary", ""), "body": body})
+    for p in posts:
+        page(f"/blog/{p['slug']}/", p["title"],
+             crumbs(("/blog/", "Блог")) + f'<article class="prose"><h1>{esc(p["title"])}</h1>'
+             f'<p class="meta">{rudate(p["date"])}</p>{md(p["body"])}</article>',
+             here="/blog/", desc=p["summary"])
+    items = "".join(f'<li><a href="/blog/{p["slug"]}/"><b>{esc(p["title"])}</b><small>{rudate(p["date"])}</small>'
+                    + (f'<span>{esc(p["summary"])}</span>' if p["summary"] else "") + "</a></li>" for p in posts)
+    page("/blog/", "Блог",
+         '<h1>Блог</h1><p class="lead">Новости и мысли.</p>'
+         + (f'<ul class="list">{items}</ul>' if posts else empty("Первые заметки появятся здесь совсем скоро.")),
+         here="/blog/", desc="Блог Павла Малькова")
+    return posts
+
+
+def project_list(items):
+    if not items:
+        return empty("Скоро здесь будет список.")
+    return '<ul class="list">' + "".join(
+        f'<li><a href="{esc(i["url"])}"><b>{esc(i["title"])}</b>'
+        + (f'<small>{esc(i["tag"])}</small>' if i.get("tag") else "")
+        + f'<span>{esc(i.get("about", ""))}</span></a></li>' for i in items) + "</ul>"
+
+
+def build_work():
+    meta, body = read(os.path.join(SRC, "work.md"))
+    data = load("work.json", {"ai": [], "pet": []})
+    page("/work/", "Работа",
+         f'<h1>Работа</h1><div class="prose">{md(body)}</div>'
+         '<p class="label">ИИ в работе аналитика</p>' + project_list(data.get("ai", []))
+         + '<p class="label">Пет-проекты</p>' + project_list(data.get("pet", [])),
+         here="/work/", desc=meta.get("description", ""))
+
+
+def build_creative():
+    meta, body = read(os.path.join(SRC, "creative.md"))
+    cards = ('<div class="cards two">'
+             '<a class="card" href="/books/"><b>Литература</b><span>Сборники рассказов и повестей. Читать бесплатно, без регистрации.</span><i>Читать →</i></a>'
+             '<a class="card" href="/creative/hronotopy/"><b>Хронотопы</b><span>Интерактивные атласы чужих книг: кто, где и когда.</span><i>Открыть →</i></a>'
+             '<a class="card" href="/creative/video/"><b>Видео</b><span>Ролики, которые я смонтировал.</span><i>Смотреть →</i></a>'
+             '<a class="card" href="/creative/music/"><b>Музыка</b><span>Песни, сделанные в Suno, по альбомам.</span><i>Слушать →</i></a>'
+             '</div>')
+    page("/creative/", "Творчество", f'<h1>Творчество</h1><div class="prose">{md(body)}</div>' + cards,
+         here="/creative/", desc=meta.get("description", ""))
+
+    back = crumbs(("/creative/", "Творчество"))
+    hr = load("creative/hronotopy.json", [])
+    page("/creative/hronotopy/", "Хронотопы",
+         back + '<h1>Хронотопы</h1><p class="lead">Атласы чужих книг: события на общей шкале времени, '
+         'с фильтрами по циклам и по степени достоверности. Каждый атлас открывается отдельной страницей.</p>'
+         + project_list(hr), here="/creative/", desc="Интерактивные хронотопы книг")
+
+    vids = load("creative/video.json", [])
+    vhtml = "".join(
+        f'<figure class="video"><div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/{esc(v["id"])}" '
+        f'title="{esc(v["title"])}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
+        f'gyroscope; picture-in-picture" allowfullscreen></iframe></div><h3>{esc(v["title"])}</h3>'
+        + (f'<p>{esc(v["about"])}</p>' if v.get("about") else "") + "</figure>" for v in vids)
+    page("/creative/video/", "Видео", back + '<h1>Видео</h1><p class="lead">Ролики моего авторства с YouTube.</p>'
+         + (vhtml or empty("Ролики скоро появятся.")), here="/creative/", desc="Видео Павла Малькова")
+
+    mus = load("creative/music.json", {"base": "", "albums": []})
+    base = mus.get("base", "")
+    ahtml = ""
+    for a in mus.get("albums", []):
+        cover = f'<img src="{esc(a["cover"])}" alt="" loading="lazy">' if a.get("cover") else ""
+        tracks = "".join(
+            f'<li data-src="{esc(base + a["tag"] + "/" + t["file"])}" data-title="{esc(t["title"])} — {esc(a["title"])}">'
+            f'<button type="button">{esc(t["title"])}</button>'
+            f'<a href="{esc(base + a["tag"] + "/" + t["file"])}" download>mp3</a></li>' for t in a.get("tracks", []))
+        ahtml += (f'<section class="album" id="{esc(a["tag"])}"><header>{cover}<div><h2>{esc(a["title"])}</h2>'
+                  f'<small>{esc(str(a.get("year", "")))} · {len(a.get("tracks", []))} трек.</small></div></header>'
+                  + (f'<p class="sans" style="margin:0 0 .6rem;color:var(--soft);font-size:.9rem">{esc(a["about"])}</p>' if a.get("about") else "")
+                  + f"<ol>{tracks}</ol></section>")
+    player = '<div class="player"><div><b></b><audio controls preload="none"></audio></div></div>' if ahtml else ""
+    page("/creative/music/", "Музыка", back + '<h1>Музыка</h1><p class="lead">Песни, которые я сделал в Suno. '
+         'Можно слушать прямо здесь или скачать в mp3.</p>' + (ahtml or empty("Альбомы скоро появятся.")),
+         here="/creative/", desc="Музыка Павла Малькова", extra=player)
+
+
+def build_404():
+    page("/404.html", "Страница не найдена",
+         '<h1>Такой страницы нет</h1><p class="lead">Возможно, она переехала, или в адресе опечатка.</p>'
+         '<p class="sans"><a href="/">На главную</a> · <a href="/books/">К сборникам</a></p>')
+
+
+def main():
+    shutil.rmtree(OUT, ignore_errors=True)
+    os.makedirs(OUT)
+    shutil.copytree("assets", f"{OUT}/assets")
+    if os.path.isdir(os.path.join(SRC, "media")):
+        shutil.copytree(os.path.join(SRC, "media"), f"{OUT}/media")
+    open(f"{OUT}/.nojekyll", "w").close()
+    if os.path.exists("CNAME"):
+        shutil.copy("CNAME", f"{OUT}/CNAME")
+    posts = build_blog()
+    build_about(posts)
+    build_work()
+    build_creative()
+    build_404()
+    print(f"Готово: заметок {len(posts)} → {OUT}/")
+
+
+if __name__ == "__main__":
+    main()
