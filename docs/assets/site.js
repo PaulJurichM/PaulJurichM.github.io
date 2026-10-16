@@ -21,13 +21,14 @@
     audio.src = li.dataset.src; title.textContent = li.dataset.title;
     bar.classList.add('on'); audio.play();
   }
-  document.querySelectorAll('.album li').forEach(function (li) {
+  document.querySelectorAll('.album li[data-src]').forEach(function (li) {
     li.querySelector('button').addEventListener('click', function () {
       if (current === li && !audio.paused) audio.pause(); else if (current === li) audio.play(); else play(li);
     });
   });
   audio.addEventListener('ended', function () {
     var next = current && current.nextElementSibling;
+    while (next && !next.dataset.src) next = next.nextElementSibling;
     if (next) play(next);
   });
 })();

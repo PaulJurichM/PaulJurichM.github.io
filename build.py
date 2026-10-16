@@ -227,10 +227,13 @@ def build_creative():
     ahtml = ""
     for a in mus.get("albums", []):
         cover = f'<img src="{esc(a["cover"])}" alt="" loading="lazy">' if a.get("cover") else ""
-        tracks = "".join(
-            f'<li data-src="{esc(base + a["tag"] + "/" + t["file"])}" data-title="{esc(t["title"])} — {esc(a["title"])}">'
-            f'<button type="button">{esc(t["title"])}</button>'
-            f'<a href="{esc(base + a["tag"] + "/" + t["file"])}" download>mp3</a></li>' for t in a.get("tracks", []))
+        def track(t):
+            src = esc(base + a["tag"] + "/" + t["file"])
+            if t.get("pending"):
+                return f'<li class="soon"><span>{esc(t["title"])}</span><small>скоро</small></li>'
+            return (f'<li data-src="{src}" data-title="{esc(t["title"])} — {esc(a["title"])}">'
+                    f'<button type="button">{esc(t["title"])}</button><a href="{src}" download>mp3</a></li>')
+        tracks = "".join(track(t) for t in a.get("tracks", []))
         info = [plural(len(a.get("tracks", [])), "трек", "трека", "треков")]
         if a.get("suno"):
             info.append(f'<a href="{esc(a["suno"])}">в Suno</a>')

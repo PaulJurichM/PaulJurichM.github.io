@@ -110,3 +110,5 @@ footer a{color:var(--soft)}
 .album header small a{color:var(--soft)}
 .toc-albums{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:0 0 1.6rem;font:.85rem "PT Sans",system-ui,sans-serif}
 .toc-albums a{color:var(--soft)}
+.album li.soon span{flex:1;color:var(--soft)}
+.album li.soon small{font:.72rem "PT Sans",system-ui,sans-serif;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:0 .45rem}

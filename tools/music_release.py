@@ -47,7 +47,7 @@ def main():
             notes = (a.get("about", "") + "\n\n" if a.get("about") else "") + f"Плейлист в Suno: {a.get('suno', '')}"
             sh("gh", "release", "create", tag, "--title", a["title"], "--notes", notes, "--target", "main")
             have = set()
-        todo = [(i, t) for i, t in enumerate(a["tracks"], 1) if t["file"] not in have]
+        todo = [(i, t) for i, t in enumerate(a["tracks"], 1) if t["file"] not in have and not t.get("pending")]
         print(f"{a['title']}: в релизе {len(have)}, загрузить {len(todo)}")
         if not todo:
             continue
