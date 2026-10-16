@@ -64,6 +64,11 @@ def md(body):
     return "\n".join(out)
 
 
+def plural(n, one, few, many):
+    w = one if n % 10 == 1 and n % 100 != 11 else few if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14 else many
+    return f"{n} {w}"
+
+
 def rudate(iso):
     y, m, d = iso.split("-")
     return f"{int(d)} {MONTHS[int(m) - 1]} {y}"
@@ -226,13 +231,18 @@ def build_creative():
             f'<li data-src="{esc(base + a["tag"] + "/" + t["file"])}" data-title="{esc(t["title"])} — {esc(a["title"])}">'
             f'<button type="button">{esc(t["title"])}</button>'
             f'<a href="{esc(base + a["tag"] + "/" + t["file"])}" download>mp3</a></li>' for t in a.get("tracks", []))
+        info = [plural(len(a.get("tracks", [])), "трек", "трека", "треков")]
+        if a.get("suno"):
+            info.append(f'<a href="{esc(a["suno"])}">в Suno</a>')
         ahtml += (f'<section class="album" id="{esc(a["tag"])}"><header>{cover}<div><h2>{esc(a["title"])}</h2>'
-                  f'<small>{esc(str(a.get("year", "")))} · {len(a.get("tracks", []))} трек.</small></div></header>'
-                  + (f'<p class="sans" style="margin:0 0 .6rem;color:var(--soft);font-size:.9rem">{esc(a["about"])}</p>' if a.get("about") else "")
+                  f'<small>{" · ".join(info)}</small></div></header>'
+                  + (f'<p class="album-about">{esc(a["about"])}</p>' if a.get("about") else "")
                   + f"<ol>{tracks}</ol></section>")
     player = '<div class="player"><div><b></b><audio controls preload="none"></audio></div></div>' if ahtml else ""
     page("/creative/music/", "Музыка", back + '<h1>Музыка</h1><p class="lead">Песни, которые я сделал в Suno. '
-         'Можно слушать прямо здесь или скачать в mp3.</p>' + (ahtml or empty("Альбомы скоро появятся.")),
+         'Можно слушать прямо здесь или скачать в mp3.</p>'
+         + ('<nav class="toc-albums">' + "".join(f'<a href="#{esc(a["tag"])}">{esc(a["title"])}</a>' for a in mus.get("albums", [])) + "</nav>" if ahtml else "")
+         + (ahtml or empty("Альбомы скоро появятся.")),
          here="/creative/", desc="Музыка Павла Малькова", extra=player)
 
 

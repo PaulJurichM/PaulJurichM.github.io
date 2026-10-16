@@ -1,0 +1,27 @@
+name: Музыка в релизы
+
+on:
+  push:
+    branches: [main]
+    paths: ["src/creative/music.json", "tools/music_release.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: music
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - name: Скачать, перегнать в mp3 и загрузить в релизы
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/music_release.py

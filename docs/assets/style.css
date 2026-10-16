@@ -106,3 +106,7 @@ footer a{color:var(--soft)}
 .hero img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .hero figcaption{font:.8rem "PT Sans",system-ui,sans-serif;color:var(--soft);margin-top:.5rem;text-align:right}
 .alias{margin:0 0 1.6rem}
+.album .album-about{font:.9rem/1.5 "PT Sans",system-ui,sans-serif;color:var(--soft);margin:0 0 .6rem}
+.album header small a{color:var(--soft)}
+.toc-albums{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:0 0 1.6rem;font:.85rem "PT Sans",system-ui,sans-serif}
+.toc-albums a{color:var(--soft)}

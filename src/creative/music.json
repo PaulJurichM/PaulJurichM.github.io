@@ -1,4 +1,846 @@
 {
-  "base": "https://github.com/PaulJurichM/PaulJurichM.github.io/releases/download/",
-  "albums": []
+ "base": "https://github.com/PaulJurichM/PaulJurichM.github.io/releases/download/",
+ "artist": "Павел Мальков",
+ "albums": [
+  {
+   "tag": "ostrov-sokrovishch",
+   "title": "Песни с Острова сокровищ",
+   "about": "С огромной благодарностью к создателям культового мультфильма моего детства.",
+   "cover": "/media/covers/ostrov-sokrovishch.jpg",
+   "suno": "https://suno.com/playlist/64711b09-a100-4260-bd6a-380b3002c624",
+   "tracks": [
+    {
+     "title": "Вступление",
+     "file": "01-vstuplenie.mp3",
+     "clip": "a6ba6721-0a65-47c6-b67c-1c42cc83386f"
+    },
+    {
+     "title": "Песня про жадность",
+     "file": "02-pesnya-pro-zhadnost.mp3",
+     "clip": "61acb22e-1acd-4cc3-a6bc-292b9e699b8b"
+    },
+    {
+     "title": "Песня о пользе спорта",
+     "file": "03-pesnya-o-polze-sporta.mp3",
+     "clip": "5d725c32-3b46-447a-8e01-440f61269aba"
+    },
+    {
+     "title": "Песня о вреде пьянства",
+     "file": "04-pesnya-o-vrede-pyanstva.mp3",
+     "clip": "daf48aa5-cf13-4aac-8563-13107584edbf"
+    },
+    {
+     "title": "Мы все участники регаты",
+     "file": "05-my-vse-uchastniki-regaty.mp3",
+     "clip": "9c04a8d7-58a2-4213-88ff-1ed1f92677ea"
+    },
+    {
+     "title": "Песня о мальчике Бобби",
+     "file": "06-pesnya-o-malchike-bobbi.mp3",
+     "clip": "8a14344f-4379-4997-b7d0-5a4006720c34"
+    },
+    {
+     "title": "Песня о вреде курения",
+     "file": "07-pesnya-o-vrede-kureniya.mp3",
+     "clip": "94025139-3520-4fa9-bdfa-a0f90dfbbfc6"
+    },
+    {
+     "title": "Финальная песня",
+     "file": "08-finalnaya-pesnya.mp3",
+     "clip": "648a4a61-cb99-4b1c-b8e9-b6ca23f24748"
+    }
+   ]
+  },
+  {
+   "tag": "concrete-mantras",
+   "title": "Concrete Mantras",
+   "about": "",
+   "cover": "/media/covers/concrete-mantras.jpg",
+   "suno": "https://suno.com/playlist/25920535-0fac-4967-ad96-0c8db1b82e22",
+   "tracks": [
+    {
+     "title": "Полночный троллейбус (Б. Окуджава)",
+     "file": "01-polnochnyy-trolleybus-b-okudzhava.mp3",
+     "clip": "827f812a-222c-43c5-93a5-eca056c7f515"
+    },
+    {
+     "title": "Netrap se, buď šťastný (Checkh-English version)",
+     "file": "02-netrap-se-bu-astn-checkh-english-version.mp3",
+     "clip": "1631e5ea-55af-41af-9375-8a1ec548baf4"
+    },
+    {
+     "title": "Не выходи из комнаты, не совершай ошибку",
+     "file": "03-ne-vyhodi-iz-komnaty-ne-sovershay-oshibku.mp3",
+     "clip": "8500e52b-c1dc-41e6-892b-18b9b588cb93"
+    },
+    {
+     "title": "Я сижу у окна",
+     "file": "04-ya-sizhu-u-okna.mp3",
+     "clip": "4e756316-51a6-4b25-bbf0-c41dfa612d18"
+    },
+    {
+     "title": "Сага",
+     "file": "05-saga.mp3",
+     "clip": "e3b203f3-766c-4375-9026-6d4c766fbd9e"
+    },
+    {
+     "title": "Пока моя рука в твоей руке",
+     "file": "06-poka-moya-ruka-v-tvoey-ruke.mp3",
+     "clip": "0508d139-736f-4ddc-879e-d4b58a0bc03d"
+    }
+   ]
+  },
+  {
+   "tag": "ska-kalka",
+   "title": "Ska-калка",
+   "about": "Ska-punk covers. Jumping rhythms and distorted smiles. Dance first. Think later.",
+   "cover": "/media/covers/ska-kalka.jpg",
+   "suno": "https://suno.com/playlist/bf753aaf-cf72-4246-9399-83138d6462f2",
+   "tracks": [
+    {
+     "title": "Ланфрен-ланфра",
+     "file": "01-lanfren-lanfra.mp3",
+     "clip": "e1fc84b7-801c-48c2-86a8-ec0a37337bf5"
+    },
+    {
+     "title": "Ручей",
+     "file": "02-ruchey.mp3",
+     "clip": "947140ea-0b92-4b87-9d88-403e315ac6ae"
+    },
+    {
+     "title": "Погода в доме (feat Фредди Крюгер)",
+     "file": "03-pogoda-v-dome-feat-freddi-kryuger.mp3",
+     "clip": "82892b2b-f788-4631-b472-4e7d9de31450"
+    },
+    {
+     "title": "Погода в доме",
+     "file": "04-pogoda-v-dome.mp3",
+     "clip": "0cb98e33-483e-43ef-a8f1-efba72d77b4d"
+    },
+    {
+     "title": "Погоня",
+     "file": "05-pogonya.mp3",
+     "clip": "d6fef63a-feb2-4226-a5f6-daa8a17d7b93"
+    },
+    {
+     "title": "Песня разбойников",
+     "file": "06-pesnya-razboynikov.mp3",
+     "clip": "921f68bc-a33a-425b-90e4-82b99920f36f"
+    },
+    {
+     "title": "Птичка-невеличка",
+     "file": "07-ptichka-nevelichka.mp3",
+     "clip": "3e681b79-d803-4d66-9356-1ab7307e452f"
+    },
+    {
+     "title": "Как вы яхту назовете",
+     "file": "08-kak-vy-yahtu-nazovete.mp3",
+     "clip": "1396872d-ea18-4a49-8c50-b6d2fd2350b3"
+    },
+    {
+     "title": "В синем море в белой пене",
+     "file": "09-v-sinem-more-v-beloy-pene.mp3",
+     "clip": "43a3afc8-75c9-4457-baf5-9dd5185b58c6"
+    },
+    {
+     "title": "В синем море в белой пене (feat Три Негодяя)",
+     "file": "10-v-sinem-more-v-beloy-pene-feat-tri-negodyaya.mp3",
+     "clip": "4d6730ba-0923-42cc-a655-8c433501bab8"
+    },
+    {
+     "title": "Бухгалтер (feat Три Негодяя)",
+     "file": "11-buhgalter-feat-tri-negodyaya.mp3",
+     "clip": "900b51dd-3316-48eb-85ba-68a853c5ef56"
+    },
+    {
+     "title": "Синий трактор",
+     "file": "12-siniy-traktor.mp3",
+     "clip": "973eb486-5a5a-4af1-bc1d-72593efcf5e1"
+    },
+    {
+     "title": "Дельтаплан (cover by Валерий Леонтьев)",
+     "file": "13-deltaplan-cover-by-valeriy-leontev.mp3",
+     "clip": "307f7f24-ba0e-4bf9-80dc-2a041ef61ad4"
+    },
+    {
+     "title": "God save the Queen (in memoriam the Sex Pistols)",
+     "file": "14-god-save-the-queen-in-memoriam-the-sex-pistols.mp3",
+     "clip": "c8c9c882-f22d-46d6-928c-f0925e068e2d"
+    },
+    {
+     "title": "Дорога (Аукцыон cover)",
+     "file": "15-doroga-auktsyon-cover.mp3",
+     "clip": "02448286-45b0-4597-9429-74ba194dab5f"
+    },
+    {
+     "title": "Песня про зайцев",
+     "file": "16-pesnya-pro-zaytsev.mp3",
+     "clip": "71e4fdd8-2cf9-4439-a802-11065ae54d16"
+    }
+   ]
+  },
+  {
+   "tag": "vekna-kabare",
+   "title": "Векна-кабаре",
+   "about": "Dark cabaret",
+   "cover": "/media/covers/vekna-kabare.jpg",
+   "suno": "https://suno.com/playlist/64521ed2-3cd4-45a3-b693-fe2c42b916d1",
+   "tracks": [
+    {
+     "title": "Голубой огонек",
+     "file": "01-goluboy-ogonek.mp3",
+     "clip": "bf9be1e6-1b21-45a1-9e51-5d93698e9ad4"
+    },
+    {
+     "title": "Плюшевый мишутка",
+     "file": "02-plyushevyy-mishutka.mp3",
+     "clip": "08ae9551-1247-4369-a024-b51cfbc13d5f"
+    },
+    {
+     "title": "А на кладбище",
+     "file": "03-a-na-kladbische.mp3",
+     "clip": "592dd00f-1627-48a6-b1e0-4693723aec65"
+    },
+    {
+     "title": "Чунга-чанга",
+     "file": "04-chunga-changa.mp3",
+     "clip": "9678b6c1-4a6d-479a-a02c-4d8651b65df3"
+    },
+    {
+     "title": "Ходить по небу (Дом Кукол cover)",
+     "file": "05-hodit-po-nebu-dom-kukol-cover.mp3",
+     "clip": "40096f92-a18e-472f-80df-3728c2e45274"
+    },
+    {
+     "title": "Зима (cover by Алсу)",
+     "file": "06-zima-cover-by-alsu.mp3",
+     "clip": "fade001d-dd96-4875-8b8f-bf98e0f6ac92"
+    },
+    {
+     "title": "Векна и мальчик",
+     "file": "07-vekna-i-malchik.mp3",
+     "clip": "d6ed5c96-2d81-4b4f-b415-b8c871b0b6e2"
+    },
+    {
+     "title": "Дельтаплан (cover by Валерий Леонтьев)",
+     "file": "08-deltaplan-cover-by-valeriy-leontev.mp3",
+     "clip": "bd3fea05-379b-456e-96cd-30c3de19f0f1"
+    },
+    {
+     "title": "Мышка (cover by Филипп Киркоров)",
+     "file": "09-myshka-cover-by-filipp-kirkorov.mp3",
+     "clip": "b10e149d-65e6-4204-9efc-dc3bcc8a5e2e"
+    },
+    {
+     "title": "The House of Rising Sun",
+     "file": "10-the-house-of-rising-sun.mp3",
+     "clip": "26f4f424-e8c7-403c-8385-073dee18d854"
+    },
+    {
+     "title": "Ванилин (Vekna Cabare)",
+     "file": "11-vanilin-vekna-cabare.mp3",
+     "clip": "6e212279-a29b-4d20-bfa8-590d9b563296"
+    },
+    {
+     "title": "Ежик резиновый",
+     "file": "12-ezhik-rezinovyy.mp3",
+     "clip": "42d05917-48bb-432e-9033-76a24308562b"
+    },
+    {
+     "title": "Прекрасное далеко (исполнитель -Векна-кабаре, песня из х/ф Гостья из будущего)",
+     "file": "13-prekrasnoe-daleko-ispolnitel-vekna-kabare-pesnya-iz-h-f-gost.mp3",
+     "clip": "8933b29b-e2fd-492a-a24e-325b5d951af8"
+    },
+    {
+     "title": "Позвони мне, позвони",
+     "file": "14-pozvoni-mne-pozvoni.mp3",
+     "clip": "07c90541-3c27-496a-af67-06ba0f36bb6f"
+    },
+    {
+     "title": "Да здравствует сюрприз (inspired by Agatha Christie)",
+     "file": "15-da-zdravstvuet-syurpriz-inspired-by-agatha-christie.mp3",
+     "clip": "6ea43462-3bcf-4018-8693-b8501e54d464"
+    },
+    {
+     "title": "Хоп, мусорок",
+     "file": "16-hop-musorok.mp3",
+     "clip": "c5cd41d4-2050-4089-83d0-d8617407260e"
+    }
+   ]
+  },
+  {
+   "tag": "skoro-na-ekranah",
+   "title": "Скоро на экранах",
+   "about": "Инструментальные саундтреки к несуществующим фильмам 1960-х",
+   "cover": "/media/covers/skoro-na-ekranah.jpg",
+   "suno": "https://suno.com/playlist/c4abe812-15dc-4164-b98b-820342994936",
+   "tracks": [
+    {
+     "title": "Ритм улиц",
+     "file": "01-ritm-ulits.mp3",
+     "clip": "96903e02-ae0d-4f49-82aa-cafeaddf98a8"
+    },
+    {
+     "title": "Фильм начинается",
+     "file": "02-film-nachinaetsya.mp3",
+     "clip": "a5642218-762a-4ea1-aff3-8a85fdc20c43"
+    },
+    {
+     "title": "Летнее путешествие",
+     "file": "03-letnee-puteshestvie.mp3",
+     "clip": "8a5f886f-3387-4f77-93a7-adbc2014cde4"
+    },
+    {
+     "title": "Приключения на море",
+     "file": "04-priklyucheniya-na-more.mp3",
+     "clip": "b97b0694-60de-41b3-bc3e-a5e61f1b2af1"
+    },
+    {
+     "title": "Маршрут построен",
+     "file": "05-marshrut-postroen.mp3",
+     "clip": "ec67e398-90a8-4cdb-b466-3d6d6d4a7d0f"
+    },
+    {
+     "title": "Когда вернемся",
+     "file": "06-kogda-vernemsya.mp3",
+     "clip": "003f8184-f8d9-4837-93d5-73a602355443"
+    },
+    {
+     "title": "Без права на ошибку",
+     "file": "07-bez-prava-na-oshibku.mp3",
+     "clip": "cdd01d08-c1d8-4313-9ab2-b849dc212bdb"
+    },
+    {
+     "title": "Пароль: Меркурий",
+     "file": "08-parol-merkuriy.mp3",
+     "clip": "d0a78517-6297-4278-b0fb-24295978567e"
+    },
+    {
+     "title": "Окно в завтра",
+     "file": "09-okno-v-zavtra.mp3",
+     "clip": "284263fb-9d79-48f0-b37b-f2752d092c63"
+    },
+    {
+     "title": "Дорога молодых",
+     "file": "10-doroga-molodyh.mp3",
+     "clip": "6d67dab2-39ae-4891-a3e5-0c3c9f6fe994"
+    },
+    {
+     "title": "Секретный груз в Дели",
+     "file": "11-sekretnyy-gruz-v-deli.mp3",
+     "clip": "61ac0d85-1465-474a-8449-ec1a97d48a76"
+    },
+    {
+     "title": "Неон и тени",
+     "file": "12-neon-i-teni.mp3",
+     "clip": "25389f4a-a512-4b92-a843-761e26935ef1"
+    },
+    {
+     "title": "Сигнал потерян",
+     "file": "13-signal-poteryan.mp3",
+     "clip": "fae8ead4-a5ad-41d0-9a24-0e3dfd3650c7"
+    },
+    {
+     "title": "Возвращение",
+     "file": "14-vozvraschenie.mp3",
+     "clip": "88e81fc9-daa0-43f4-8906-1fa6fae03a1d"
+    },
+    {
+     "title": "Три дня до старта",
+     "file": "15-tri-dnya-do-starta.mp3",
+     "clip": "aa4c5761-be7c-411d-8b11-bb1c716eeec5"
+    },
+    {
+     "title": "Испытания пройдены",
+     "file": "16-ispytaniya-proydeny.mp3",
+     "clip": "0fc44b05-0e20-404b-bf52-89a656fa1241"
+    }
+   ]
+  },
+  {
+   "tag": "vorobinaya-oratoriya",
+   "title": "Новая Воробьиная Оратория",
+   "about": "Памяти Сергея Курёхина",
+   "cover": "/media/covers/vorobinaya-oratoriya.jpg",
+   "suno": "https://suno.com/playlist/658892c0-7390-45cf-b1fe-b5f8a9e7c77d",
+   "tracks": [
+    {
+     "title": "Ленин все-таки гриб",
+     "file": "01-lenin-vse-taki-grib.mp3",
+     "clip": "e0449a35-d923-4679-8385-978a045244d0"
+    },
+    {
+     "title": "Пионеры на льдине",
+     "file": "02-pionery-na-ldine.mp3",
+     "clip": "e6511514-b47a-4d95-9736-3dac91a1dd0b"
+    },
+    {
+     "title": "Два капитана-2: возвращение",
+     "file": "03-dva-kapitana-2-vozvraschenie.mp3",
+     "clip": "8eca9fa1-7132-48aa-98aa-4b984698f973"
+    },
+    {
+     "title": "Пацаки?",
+     "file": "04-patsaki.mp3",
+     "clip": "e92bb7a9-a9af-4d92-98e7-2bdc7a80daf7"
+    },
+    {
+     "title": "Коллективное несогласие",
+     "file": "05-kollektivnoe-nesoglasie.mp3",
+     "clip": "829ac55c-357a-4d0d-8e12-c5d7c1f66224"
+    },
+    {
+     "title": "Кин-Дза-Дза",
+     "file": "06-kin-dza-dza.mp3",
+     "clip": "0f0261dd-a438-4249-a67f-79e3080d4ba4"
+    },
+    {
+     "title": "Торжество порядка",
+     "file": "07-torzhestvo-poryadka.mp3",
+     "clip": "72037edf-0924-49c4-b85b-b9b7b1d46007"
+    },
+    {
+     "title": "Разлом",
+     "file": "08-razlom.mp3",
+     "clip": "2b8bde89-bc49-4b36-8e96-8b76a40c3345"
+    },
+    {
+     "title": "Коллективное несогласие-2",
+     "file": "09-kollektivnoe-nesoglasie-2.mp3",
+     "clip": "607ddb66-9854-429d-b0ca-7b6fe2394ca5"
+    }
+   ]
+  },
+  {
+   "tag": "chernee-nochi",
+   "title": "Чернее ночи",
+   "about": "Dark covers. Post-punk, industrial, heavy rock. Cold sound, rigid rhythm, harsh vocals.",
+   "cover": "/media/covers/chernee-nochi.jpg",
+   "suno": "https://suno.com/playlist/87254a17-bd45-4efb-be53-1961a27df3fa",
+   "tracks": [
+    {
+     "title": "Погода в доме (feat Фредди Крюгер)",
+     "file": "01-pogoda-v-dome-feat-freddi-kryuger.mp3",
+     "clip": "82892b2b-f788-4631-b472-4e7d9de31450"
+    },
+    {
+     "title": "Песня Красной Шапочки",
+     "file": "02-pesnya-krasnoy-shapochki.mp3",
+     "clip": "05a3ee81-06c6-482f-8b05-4e98c7dcce89"
+    },
+    {
+     "title": "Если у вас нету тети",
+     "file": "03-esli-u-vas-netu-teti.mp3",
+     "clip": "b29acf8e-c431-4474-ad80-06b667db118d"
+    },
+    {
+     "title": "Изгиб гитары желтой",
+     "file": "04-izgib-gitary-zheltoy.mp3",
+     "clip": "e3fcfe39-94c5-4ce0-89f3-d80d89f9c5f8"
+    },
+    {
+     "title": "Милая моя",
+     "file": "05-milaya-moya.mp3",
+     "clip": "6fc4a404-823a-4624-86a4-dca30a089d5f"
+    },
+    {
+     "title": "Медуза",
+     "file": "06-meduza.mp3",
+     "clip": "29499c5c-cb03-4afb-813a-4339365c8455"
+    },
+    {
+     "title": "Звездный час (intro)",
+     "file": "07-zvezdnyy-chas-intro.mp3",
+     "clip": "2d3f4213-0c4f-484a-9b8f-362a0a457119"
+    },
+    {
+     "title": "Песенка мамонтенка (feat Эльф Пикачу)",
+     "file": "08-pesenka-mamontenka-feat-elf-pikachu.mp3",
+     "clip": "a12ee1b8-b845-4619-bc44-e70751a04e01"
+    },
+    {
+     "title": "Пчеловод",
+     "file": "09-pchelovod.mp3",
+     "clip": "fae67375-7ba6-4026-bac7-a2573cc3ff22"
+    },
+    {
+     "title": "Весна идет (Ночные Снайперы)",
+     "file": "10-vesna-idet-nochnye-snaypery.mp3",
+     "clip": "ab29989f-8b2f-4761-af96-f105028fac8d"
+    },
+    {
+     "title": "36 и 6",
+     "file": "11-36-i-6.mp3",
+     "clip": "43f3ce1c-0739-4816-b933-f95c52ac1ed2"
+    },
+    {
+     "title": "У - е У - е У - е",
+     "file": "12-u-e-u-e-u-e.mp3",
+     "clip": "2d3eca5b-f937-41dd-b8a9-fd484d052ec8"
+    },
+    {
+     "title": "Не для меня",
+     "file": "13-ne-dlya-menya.mp3",
+     "clip": "889eb2f9-7b5e-4e4b-a1d0-e7c28e407290"
+    },
+    {
+     "title": "Arleccino (feat Linn Tildemann)",
+     "file": "14-arleccino-feat-linn-tildemann.mp3",
+     "clip": "2f0e27a9-c276-4675-88a0-cec874f50fe0"
+    },
+    {
+     "title": "The roof the roof the roof is on fire",
+     "file": "15-the-roof-the-roof-the-roof-is-on-fire.mp3",
+     "clip": "8f656cd4-6889-48fd-a9c4-6152857c40b1"
+    },
+    {
+     "title": "Зеленое море тайги (feat металл-оркестр имени Александры Пахмутовой)",
+     "file": "16-zelenoe-more-taygi-feat-metall-orkestr-imeni-aleksandry-pahm.mp3",
+     "clip": "2fcc281c-66c7-4720-abf8-64901793f3dc"
+    },
+    {
+     "title": "На кухне мышка уронила банку",
+     "file": "17-na-kuhne-myshka-uronila-banku.mp3",
+     "clip": "5ea5939a-b19d-4207-b979-374f4ff3949e"
+    },
+    {
+     "title": "Два кусочека колбаски",
+     "file": "18-dva-kusocheka-kolbaski.mp3",
+     "clip": "842bd84f-9910-47a5-9326-f7d0bb1684c3"
+    },
+    {
+     "title": "Александра, Александра",
+     "file": "19-aleksandra-aleksandra.mp3",
+     "clip": "b3be06dd-4d10-49d1-9e3b-c10c9800fb16"
+    },
+    {
+     "title": "Карлсоны",
+     "file": "20-karlsony.mp3",
+     "clip": "9baaa9a7-2ccc-4349-9bd6-dfe31c0842fb"
+    },
+    {
+     "title": "Шальная императрица (feat Линн Тильдеманн)",
+     "file": "21-shalnaya-imperatritsa-feat-linn-tildemann.mp3",
+     "clip": "a5b54907-1fa9-4675-9496-1d800c64de7e"
+    },
+    {
+     "title": "Hafanana",
+     "file": "22-hafanana.mp3",
+     "clip": "3471f04a-833b-4269-9e60-bbbdffd4c089"
+    }
+   ]
+  },
+  {
+   "tag": "melodii-i-ritmy",
+   "title": "Мелодии и ритмы",
+   "about": "Тот самый «Неголубой огонёк», которого нам так не хватало все эти годы.",
+   "cover": "/media/covers/melodii-i-ritmy.jpg",
+   "suno": "https://suno.com/playlist/4ced15b4-bfb1-45ca-8fb0-548e346b10cf",
+   "tracks": [
+    {
+     "title": "В лесу родилась ёлочка",
+     "file": "01-v-lesu-rodilas-elochka.mp3",
+     "clip": "05c1a270-f905-4f8c-a1ea-ad2179cd7acc"
+    },
+    {
+     "title": "Ванилин (Дом Кукол cover)",
+     "file": "02-vanilin-dom-kukol-cover.mp3",
+     "clip": "909e0011-2e97-4f39-9af9-c3ae042341bd"
+    },
+    {
+     "title": "Нельзя бухать",
+     "file": "03-nelzya-buhat.mp3",
+     "clip": "7e883f55-8ee2-4e78-80b3-4bdc973206c5"
+    },
+    {
+     "title": "Дульсинея",
+     "file": "04-dulsineya.mp3",
+     "clip": "614decc7-7f43-44eb-9238-a97dcca85a4f"
+    },
+    {
+     "title": "Помоги мне (Бриллиантовая рука cover)",
+     "file": "05-pomogi-mne-brilliantovaya-ruka-cover.mp3",
+     "clip": "22bfdc96-4f6f-4d99-aa18-8f7f1df6d3a1"
+    },
+    {
+     "title": "Государство (ГрОб cover)",
+     "file": "06-gosudarstvo-grob-cover.mp3",
+     "clip": "0f80592c-2b77-4ca4-9143-fc3ab4ec40b3"
+    },
+    {
+     "title": "Знаешь ли ты (Максим cover)",
+     "file": "07-znaesh-li-ty-maksim-cover.mp3",
+     "clip": "ac9c5db7-898e-49b9-9ca2-146eb84a3456"
+    },
+    {
+     "title": "Ванилин (Vekna Cabare)",
+     "file": "08-vanilin-vekna-cabare.mp3",
+     "clip": "6e212279-a29b-4d20-bfa8-590d9b563296"
+    },
+    {
+     "title": "Солнечная песня про зайцев",
+     "file": "09-solnechnaya-pesnya-pro-zaytsev.mp3",
+     "clip": "ba4b65bb-af62-4e2f-8b83-4b8f5102f750"
+    },
+    {
+     "title": "Ежик резиновый",
+     "file": "10-ezhik-rezinovyy.mp3",
+     "clip": "42d05917-48bb-432e-9033-76a24308562b"
+    },
+    {
+     "title": "Весна (Ночные снайперы Cover)",
+     "file": "11-vesna-nochnye-snaypery-cover.mp3",
+     "clip": "e96bc4fe-095d-4e3d-a8bc-13be68bf5c14"
+    },
+    {
+     "title": "Прекрасное далеко (исполнитель -Векна-кабаре, песня из х/ф Гостья из будущего)",
+     "file": "12-prekrasnoe-daleko-ispolnitel-vekna-kabare-pesnya-iz-h-f-gost.mp3",
+     "clip": "8933b29b-e2fd-492a-a24e-325b5d951af8"
+    },
+    {
+     "title": "Пчеловод",
+     "file": "13-pchelovod.mp3",
+     "clip": "fae67375-7ba6-4026-bac7-a2573cc3ff22"
+    },
+    {
+     "title": "Он обернулся, простой такой",
+     "file": "14-on-obernulsya-prostoy-takoy.mp3",
+     "clip": "bf424639-b0a3-4640-9ee7-cd05ffd59f88"
+    },
+    {
+     "title": "Автобус (Скади cover)",
+     "file": "15-avtobus-skadi-cover.mp3",
+     "clip": "59e2844f-2f92-44bf-a646-9e519f48e05f"
+    },
+    {
+     "title": "Сага",
+     "file": "16-saga.mp3",
+     "clip": "e3b203f3-766c-4375-9026-6d4c766fbd9e"
+    },
+    {
+     "title": "Весна идет (Ночные Снайперы)",
+     "file": "17-vesna-idet-nochnye-snaypery.mp3",
+     "clip": "ab29989f-8b2f-4761-af96-f105028fac8d"
+    },
+    {
+     "title": "36 и 6 (с хором Центрального Телевидения)",
+     "file": "18-36-i-6-s-horom-tsentralnogo-televideniya.mp3",
+     "clip": "53bf877f-033d-4f90-bbd2-2687126a82c8"
+    },
+    {
+     "title": "Романс Инквизитора (Лора Бочарова cover)",
+     "file": "19-romans-inkvizitora-lora-bocharova-cover.mp3",
+     "clip": "578c99d9-4e20-4611-8810-d56e0bb43686"
+    },
+    {
+     "title": "Sound of Silence (Sex pistols feat Simon and Garfunkel)",
+     "file": "20-sound-of-silence-sex-pistols-feat-simon-and-garfunkel.mp3",
+     "clip": "8fbd9193-18a6-4403-8d61-2ea6fbaefae8"
+    },
+    {
+     "title": "Цыпленок жареный",
+     "file": "21-tsyplenok-zharenyy.mp3",
+     "clip": "70e8de57-1621-4791-832a-38387209b371"
+    },
+    {
+     "title": "Бедная овечка (с клезмер-бандом синагоги города Гардабани)",
+     "file": "22-bednaya-ovechka-s-klezmer-bandom-sinagogi-goroda-gardabani.mp3",
+     "clip": "57f17b41-3586-432b-918e-d4ac9b9d3a81"
+    },
+    {
+     "title": "Колыбельная (Татьяна Буланова cover)",
+     "file": "23-kolybelnaya-tatyana-bulanova-cover.mp3",
+     "clip": "12134d29-c868-4a55-85f4-e020918429a0"
+    },
+    {
+     "title": "Кольщик (Михаил Круг cover)",
+     "file": "24-kolschik-mihail-krug-cover.mp3",
+     "clip": "cb473699-86f5-4db4-a5fd-e2feab85d1ff"
+    },
+    {
+     "title": "Yellow Submarine",
+     "file": "25-yellow-submarine.mp3",
+     "clip": "13b88cd3-55f3-4631-9fd0-9fee027f294c"
+    },
+    {
+     "title": "Привет, Андрей (feat Ramonez)",
+     "file": "26-privet-andrey-feat-ramonez.mp3",
+     "clip": "b928dc50-2cc1-45e4-afa4-3727df177c50"
+    },
+    {
+     "title": "Пидоры (исп. оркестр оперного театра им.Волочковой)",
+     "file": "27-pidory-isp-orkestr-opernogo-teatra-im-volochkovoy.mp3",
+     "clip": "f4ff5d53-61b3-4273-93d0-c0716acede97"
+    },
+    {
+     "title": "Бухгалтер (оркестр им. Идише Маме и Иван Говнов)",
+     "file": "28-buhgalter-orkestr-im-idishe-mame-i-ivan-govnov.mp3",
+     "clip": "7a6ce97f-a38c-4b83-8ba8-88f859011720"
+    },
+    {
+     "title": "Глупый мотылёк (Исп. Николай Басков и хор Мариинского театра)",
+     "file": "29-glupyy-motylek-isp-nikolay-baskov-i-hor-mariinskogo-teatra.mp3",
+     "clip": "fbfd57d3-c768-4fdf-babb-fd2c0b41a5bf"
+    },
+    {
+     "title": "Искала (Земфира cover)",
+     "file": "30-iskala-zemfira-cover.mp3",
+     "clip": "38cb2852-6d4c-4280-b853-bd7c62928bba"
+    },
+    {
+     "title": "Любовь не пропала (DDT cover)",
+     "file": "31-lyubov-ne-propala-ddt-cover.mp3",
+     "clip": "460a8a41-f798-4989-9530-41b84feb52f9"
+    },
+    {
+     "title": "Любочка (EBM-style)",
+     "file": "32-lyubochka-ebm-style.mp3",
+     "clip": "348bd62e-9fb4-4884-ad94-d6ed13b28127"
+    },
+    {
+     "title": "Фея-мясоед (by Северный Флот)",
+     "file": "33-feya-myasoed-by-severnyy-flot.mp3",
+     "clip": "5eb15a5e-759a-4d1e-bd81-a2ce05261554"
+    },
+    {
+     "title": "Телефонистки",
+     "file": "34-telefonistki.mp3",
+     "clip": "c886e3ac-f683-4b7a-86ce-224099af44c9"
+    },
+    {
+     "title": "Happy Together (inspired by Turtles and Green Day)",
+     "file": "35-happy-together-inspired-by-turtles-and-green-day.mp3",
+     "clip": "1b24b2c4-d093-4ead-9903-0678c70edce6"
+    },
+    {
+     "title": "Сонный рыцарь",
+     "file": "36-sonnyy-rytsar.mp3",
+     "clip": "6e74cb3e-8ada-48b8-8492-aab6b1a06dc2"
+    }
+   ]
+  },
+  {
+   "tag": "dom-na-zakate",
+   "title": "Дом на закате",
+   "about": "Музыка - американские блюзы 1960х, тексты - советские.",
+   "cover": "/media/covers/dom-na-zakate.jpg",
+   "suno": "https://suno.com/playlist/8f0f1612-374d-4aaf-83d9-a70511f0639a",
+   "tracks": [
+    {
+     "title": "Паровоз (The Animals)",
+     "file": "01-parovoz-the-animals.mp3",
+     "clip": "a5e7e246-7c67-447d-b508-f72e68980c2e"
+    },
+    {
+     "title": "Паровоз (Nick Cave)",
+     "file": "02-parovoz-nick-cave.mp3",
+     "clip": "60bda59f-d97b-499d-a9fd-0e6a54cbad1d"
+    },
+    {
+     "title": "На Тихорецкую (Simon and Garfunkel)",
+     "file": "03-na-tihoretskuyu-simon-and-garfunkel.mp3",
+     "clip": "3743f5b5-abb7-48b2-9b3d-2f21caf7807f"
+    },
+    {
+     "title": "На Тихорецкую (Shean Martin)",
+     "file": "04-na-tihoretskuyu-shean-martin.mp3",
+     "clip": "0dede63c-5d04-41d1-bc3e-5fd14f3afb2a"
+    },
+    {
+     "title": "Где-то далеко",
+     "file": "05-gde-to-daleko.mp3",
+     "clip": "9d31769b-d749-4a87-94d2-88eba882c46b"
+    },
+    {
+     "title": "Козырный туз (cover by Монеточка)",
+     "file": "06-kozyrnyy-tuz-cover-by-monetochka.mp3",
+     "clip": "54cceaaf-f147-4036-a03b-c354af895cb3"
+    },
+    {
+     "title": "Schnappi, das kleine Krokodil",
+     "file": "07-schnappi-das-kleine-krokodil.mp3",
+     "clip": "3b8a0018-0f70-49d5-b553-aabedb822ad2"
+    },
+    {
+     "title": "По полям, по полям",
+     "file": "08-po-polyam-po-polyam.mp3",
+     "clip": "ab7edba1-d1cf-4ddc-a681-4a0efe8cf191"
+    },
+    {
+     "title": "Владимирский централ (cover by Михаил Круг)",
+     "file": "09-vladimirskiy-tsentral-cover-by-mihail-krug.mp3",
+     "clip": "f5174bb4-9e68-4824-a6c3-eda916695686"
+    },
+    {
+     "title": "Дорога (Аукцыон cover)",
+     "file": "10-doroga-auktsyon-cover.mp3",
+     "clip": "9b92f384-7ea0-4df9-8bdf-c984390e8efc"
+    },
+    {
+     "title": "Nothing's right",
+     "file": "11-nothing-s-right.mp3",
+     "clip": "3becd95f-879c-4874-95d0-24379c0eb623"
+    },
+    {
+     "title": "Помоги мне (Бриллиантовая рука cover)",
+     "file": "12-pomogi-mne-brilliantovaya-ruka-cover.mp3",
+     "clip": "22bfdc96-4f6f-4d99-aa18-8f7f1df6d3a1"
+    }
+   ]
+  },
+  {
+   "tag": "za-meridianom",
+   "title": "За меридианом южной звезды",
+   "about": "Симфоническая сюита к неснятому приключенческому фильму",
+   "cover": "/media/covers/za-meridianom.jpg",
+   "suno": "https://suno.com/playlist/3a1ab8c0-5096-4874-9320-ab238f2363db",
+   "tracks": [
+    {
+     "title": "Утро в портовом городе",
+     "file": "01-utro-v-portovom-gorode.mp3",
+     "clip": "6941929e-100e-4094-a134-8c3b2014cfd2"
+    },
+    {
+     "title": "Прощание с родным берегом",
+     "file": "02-proschanie-s-rodnym-beregom.mp3",
+     "clip": "dd1e3ed4-959c-45ff-b9c5-78e3e8e09794"
+    },
+    {
+     "title": "Карта с исчезнувшим островом",
+     "file": "03-karta-s-ischeznuvshim-ostrovom.mp3",
+     "clip": "a0a676ff-a014-45e5-b4a7-88be177925ea"
+    },
+    {
+     "title": "В открытом океане",
+     "file": "04-v-otkrytom-okeane.mp3",
+     "clip": "84c7db94-c224-4abf-966a-4e2b669b6637"
+    },
+    {
+     "title": "Когда приходит шторм",
+     "file": "05-kogda-prihodit-shtorm.mp3",
+     "clip": "1b9aa9f5-0e21-4ebf-8208-29722b60aacd"
+    },
+    {
+     "title": "Исчезающий остров",
+     "file": "06-ischezayuschiy-ostrov.mp3",
+     "clip": "255962b6-dbac-4629-adb0-c6ce2e977f0c"
+    },
+    {
+     "title": "След капитана",
+     "file": "07-sled-kapitana.mp3",
+     "clip": "30acbbc4-ccb9-4fdf-bfac-d51f555637b5"
+    },
+    {
+     "title": "Последняя беседа",
+     "file": "08-poslednyaya-beseda.mp3",
+     "clip": "f0168a31-068d-45c7-b44a-8119d6daf525"
+    },
+    {
+     "title": "Возвращение домой",
+     "file": "09-vozvraschenie-domoy.mp3",
+     "clip": "64b9ef5d-f04a-45fd-9021-d5726ed4069e"
+    }
+   ]
+  }
+ ]
 }
