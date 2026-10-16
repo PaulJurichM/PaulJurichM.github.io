@@ -124,11 +124,10 @@ def empty(text):
 
 def build_about(posts):
     meta, body = read(os.path.join(SRC, "about.md"))
-    photo = meta.get("photo", "")
-    pic = (f'<img class="photo" src="{esc(photo)}" alt="{NAME}">' if photo
-           else '<div class="photo" aria-hidden="true">ПМ</div>')
-    head = (f'<section class="about">{pic}<div><h1>{NAME}</h1>'
-            f'<p class="alias">в прозе — {PEN}</p></div></section>')
+    photo, cap = meta.get("photo", ""), meta.get("caption", "")
+    pic = (f'<figure class="hero"><img src="{esc(photo)}" alt="{esc(meta.get("alt", NAME))}">'
+           + (f'<figcaption>{esc(cap)}</figcaption>' if cap else "") + "</figure>") if photo else ""
+    head = pic + f'<h1>{NAME}</h1><p class="alias">в прозе — {PEN}</p>'
     cards = ('<p class="label">Разделы</p><div class="cards">'
              '<a class="card" href="/blog/"><b>Блог</b><span>Новости и мысли: о работе, о книгах, о том, что получилось и что нет.</span></a>'
              '<a class="card" href="/work/"><b>Работа</b><span>Как я встраиваю ИИ в работу системного аналитика. Проекты и пет-проекты.</span></a>'
