@@ -127,6 +127,8 @@ def page(path, title, content, here="", desc="", extra=""):
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
 <body>
 <header class="top">
@@ -308,6 +310,7 @@ def main():
     if os.path.isdir(os.path.join(SRC, "media")):
         shutil.copytree(os.path.join(SRC, "media"), f"{OUT}/media")
     open(f"{OUT}/.nojekyll", "w").close()
+    shutil.copy("assets/favicon.ico", f"{OUT}/favicon.ico")  # для страниц без своей иконки (хронотопы и др.)
     if os.path.exists("CNAME"):
         shutil.copy("CNAME", f"{OUT}/CNAME")
     posts = build_blog()
