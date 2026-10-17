@@ -112,3 +112,16 @@ footer a{color:var(--soft)}
 .toc-albums a{color:var(--soft)}
 .album li.soon span{flex:1;color:var(--soft)}
 .album li.soon small{font:.72rem "PT Sans",system-ui,sans-serif;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:0 .45rem}
+
+/* статьи раздела «Работа» */
+.prose h3{font-size:1.08rem;margin:1.6rem 0 .4rem}
+.prose ol{margin:0 0 1rem;padding-left:1.5rem}
+.prose code{font-family:ui-monospace,Consolas,monospace;font-size:.88em;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:0 .25em}
+.prose pre{margin:1.2rem 0;padding:.9rem 1rem;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow-x:auto;line-height:1.45}
+.prose pre code{border:0;padding:0;background:none;font-size:.82rem}
+.prose .table{overflow-x:auto;margin:1.2rem 0}
+.prose table{border-collapse:collapse;width:100%;font-family:"PT Sans",system-ui,sans-serif;font-size:.9rem}
+.prose th,.prose td{border-bottom:1px solid var(--line);padding:.45rem .6rem .45rem 0;text-align:left;vertical-align:top}
+.prose th{color:var(--soft);font-weight:700}
+.prose .tag{font-family:"PT Sans",system-ui,sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:2.2rem 0 -.3rem}
+.prose .tag+h2{margin-top:.4rem}

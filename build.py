@@ -40,23 +40,53 @@ def inline(text):
     t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
     t = re.sub(r"\*\*([^*\n]+)\*\*", r"<strong>\1</strong>", t)
     t = re.sub(r"\*([^*\n]+)\*", r"<em>\1</em>", t)
+    t = re.sub(r"`([^`\n]+)`", r"<code>\1</code>", t)
     return t
 
 
+def table(lines):
+    rows = [[c.strip() for c in l.strip().strip("|").split("|")] for l in lines]
+    head, body = rows[0], [r for r in rows[2:]]
+    th = "".join(f"<th>{inline(c)}</th>" for c in head)
+    tb = "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in body)
+    return f'<div class="table"><table><thead><tr>{th}</tr></thead><tbody>{tb}</tbody></table></div>'
+
+
 def md(body):
-    """Небольшой Markdown: абзацы, ## заголовки, списки «- », цитаты «> », ссылки, картинки, курсив."""
+    """Небольшой Markdown: абзацы, ## и ### заголовки, списки «- » и «1. », цитаты «> », ссылки,
+    картинки, курсив, `код`, таблицы «| a | b |», блоки ``` и метка статуса «@ текст»."""
+    fences = []
+
+    def keep(m):
+        fences.append(m.group(1))
+        return f"\n\n\x00{len(fences) - 1}\x00\n\n"
+
+    body = re.sub(r"^```[^\n]*\n(.*?)\n```\s*$", keep, body.strip(), flags=re.S | re.M)
     out = []
     for block in re.split(r"\n\s*\n", body.strip()):
         lines = block.strip("\n").split("\n")
         if not block.strip():
             continue
-        if lines[0].startswith("## "):
-            out.append(f"<h2>{inline(lines[0][3:].strip())}</h2>")
+        m = re.fullmatch(r"\x00(\d+)\x00", block.strip())
+        if m:
+            out.append(f"<pre><code>{html.escape(fences[int(m.group(1))], quote=False)}</code></pre>")
+            continue
+        while lines and (re.match(r"#{2,3} ", lines[0]) or lines[0].startswith("@ ")):
+            if lines[0].startswith("@ "):
+                out.append(f'<p class="tag">{inline(lines[0][2:].strip())}</p>')
+            else:
+                lvl = 3 if lines[0].startswith("### ") else 2
+                out.append(f"<h{lvl}>{inline(lines[0][lvl + 1:].strip())}</h{lvl}>")
             lines = lines[1:]
-            if not lines:
-                continue
-        if all(l.startswith("- ") for l in lines):
+        if not lines:
+            continue
+        if len(lines) >= 2 and all(l.strip().startswith("|") for l in lines) and re.fullmatch(r"[|\s:-]+", lines[1].strip()):
+            out.append(table(lines))
+        elif all(l.startswith("- ") for l in lines):
             out.append("<ul>" + "".join(f"<li>{inline(l[2:])}</li>" for l in lines) + "</ul>")
+        elif all(re.match(r"\d+\. ", l) for l in lines):
+            items = [inline(re.sub(r"^\d+\. ", "", l)) for l in lines]
+            out.append("<ol>" + "".join(f"<li>{i}</li>" for i in items) + "</ol>")
         elif all(l.startswith(">") for l in lines):
             out.append("<blockquote><p>" + "<br>".join(inline(re.sub(r"^>\s?", "", l)) for l in lines) + "</p></blockquote>")
         else:
@@ -184,6 +214,22 @@ def project_list(items):
         + f'<span>{esc(i.get("about", ""))}</span></a></li>' for i in items) + "</ul>"
 
 
+def build_work_articles():
+    """Статьи раздела «Работа»: src/work/адрес.md -> /work/адрес/. «_» в начале имени и draft: yes прячут файл."""
+    d = os.path.join(SRC, "work")
+    for f in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+        if not f.endswith(".md") or f.startswith("_"):
+            continue
+        meta, body = read(os.path.join(d, f))
+        if meta.get("draft"):
+            continue
+        slug, title = f[:-3], meta.get("title", f[:-3])
+        tag = f'<p class="meta">{esc(meta["tag"])}</p>' if meta.get("tag") else ""
+        page(f"/work/{slug}/", title,
+             crumbs(("/work/", "Работа")) + f'<article class="prose"><h1>{esc(title)}</h1>{tag}{md(body)}</article>',
+             here="/work/", desc=meta.get("summary", ""))
+
+
 def build_work():
     meta, body = read(os.path.join(SRC, "work.md"))
     data = load("work.json", {"ai": [], "pet": []})
@@ -267,6 +313,7 @@ def main():
     posts = build_blog()
     build_about(posts)
     build_work()
+    build_work_articles()
     build_creative()
     build_404()
     print(f"Готово: заметок {len(posts)} → {OUT}/")
