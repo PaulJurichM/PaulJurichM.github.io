@@ -779,8 +779,7 @@
     {
      "title": "Nothing's right",
      "file": "11-nothing-s-right.mp3",
-     "clip": "3becd95f-879c-4874-95d0-24379c0eb623",
-     "pending": true
+     "clip": "3becd95f-879c-4874-95d0-24379c0eb623"
     },
     {
      "title": "Помоги мне (Бриллиантовая рука cover)",
@@ -804,8 +803,7 @@
     {
      "title": "Прощание с родным берегом",
      "file": "02-proschanie-s-rodnym-beregom.mp3",
-     "clip": "dd1e3ed4-959c-45ff-b9c5-78e3e8e09794",
-     "pending": true
+     "clip": "dd1e3ed4-959c-45ff-b9c5-78e3e8e09794"
     },
     {
      "title": "Карта с исчезнувшим островом",
@@ -815,38 +813,32 @@
     {
      "title": "В открытом океане",
      "file": "04-v-otkrytom-okeane.mp3",
-     "clip": "84c7db94-c224-4abf-966a-4e2b669b6637",
-     "pending": true
+     "clip": "84c7db94-c224-4abf-966a-4e2b669b6637"
     },
     {
      "title": "Когда приходит шторм",
      "file": "05-kogda-prihodit-shtorm.mp3",
-     "clip": "1b9aa9f5-0e21-4ebf-8208-29722b60aacd",
-     "pending": true
+     "clip": "1b9aa9f5-0e21-4ebf-8208-29722b60aacd"
     },
     {
      "title": "Исчезающий остров",
      "file": "06-ischezayuschiy-ostrov.mp3",
-     "clip": "255962b6-dbac-4629-adb0-c6ce2e977f0c",
-     "pending": true
+     "clip": "255962b6-dbac-4629-adb0-c6ce2e977f0c"
     },
     {
      "title": "След капитана",
      "file": "07-sled-kapitana.mp3",
-     "clip": "30acbbc4-ccb9-4fdf-bfac-d51f555637b5",
-     "pending": true
+     "clip": "30acbbc4-ccb9-4fdf-bfac-d51f555637b5"
     },
     {
      "title": "Последняя беседа",
      "file": "08-poslednyaya-beseda.mp3",
-     "clip": "f0168a31-068d-45c7-b44a-8119d6daf525",
-     "pending": true
+     "clip": "f0168a31-068d-45c7-b44a-8119d6daf525"
     },
     {
      "title": "Возвращение домой",
      "file": "09-vozvraschenie-domoy.mp3",
-     "clip": "64b9ef5d-f04a-45fd-9021-d5726ed4069e",
-     "pending": true
+     "clip": "64b9ef5d-f04a-45fd-9021-d5726ed4069e"
     }
    ]
   }
