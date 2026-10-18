@@ -141,6 +141,7 @@ def page(path, title, content, here="", desc="", extra=""):
 {extra}
 <footer>© {NAME}, 2026 · проза под именем {PEN} · <a href="https://t.me/MalariNeo">Телеграм</a></footer>
 <script src="/assets/site.js"></script>
+<script data-goatcounter="https://malari.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
 """
