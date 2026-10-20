@@ -233,12 +233,63 @@ def build_work_articles():
              here="/work/", desc=meta.get("summary", ""))
 
 
-def build_work():
+MONTHS_NOM = "январь февраль март апрель май июнь июль август сентябрь октябрь ноябрь декабрь".split()
+MORE = "<!--more-->"
+GRUMBLER = "Заметки ворчуна"
+
+
+def build_grumbler():
+    """«Заметки ворчуна»: src/work/vorchun/ГГГГ-ММ-ДД-адрес.md -> /work/vorchun/адрес/.
+    В ленте показывается текст до метки <!--more--> (нет метки — первый абзац), дальше «Читать дальше».
+    month: yes в шапке — точная дата неизвестна, показывать только месяц и год."""
+    d = os.path.join(SRC, "work", "vorchun")
+    notes = []
+    for f in sorted(os.listdir(d), reverse=True) if os.path.isdir(d) else []:
+        m = re.match(r"(\d{4})-(\d{2})-(\d{2})-(.+)\.md$", f)
+        if not m or f.startswith("_"):
+            continue
+        meta, body = read(os.path.join(d, f))
+        if meta.get("draft"):
+            continue
+        y, mo, day, slug = m.groups()
+        when = f"{MONTHS_NOM[int(mo) - 1]} {y}" if meta.get("month") else rudate(f"{y}-{mo}-{day}")
+        if MORE in body:
+            teaser, rest = (s.strip() for s in body.split(MORE, 1))
+        else:
+            teaser, _, rest = body.partition("\n\n")
+        notes.append({"slug": slug, "title": meta.get("title", slug), "when": when,
+                      "teaser": teaser, "full": f"{teaser}\n\n{rest}".strip()})
+    base = "/work/vorchun/"
+    for n in notes:
+        page(f"{base}{n['slug']}/", n["title"],
+             crumbs(("/work/", "Работа"), (base, GRUMBLER)) + f'<article class="prose"><h1>{esc(n["title"])}</h1>'
+             f'<p class="meta">{n["when"]}</p>{md(n["full"])}'
+             f'<p class="sans more"><a href="{base}">← Все заметки ворчуна</a></p></article>',
+             here="/work/", desc=re.sub(r"[*_`\[\]]", "", n["teaser"])[:200])
+    feed = "".join(
+        f'<article class="note"><p class="meta">{n["when"]}</p>'
+        f'<h2><a href="{base}{n["slug"]}/">{esc(n["title"])}</a></h2>'
+        f'<div class="prose">{md(n["teaser"])}</div>'
+        f'<p class="sans more"><a href="{base}{n["slug"]}/">Читать дальше →</a></p></article>' for n in notes)
+    page(base, GRUMBLER,
+         crumbs(("/work/", "Работа")) + f'<h1>{GRUMBLER}</h1>'
+         '<p class="lead">Мысли разной степени причёсанности о том, что знакомо каждому в айти: '
+         'созвоны, менеджеры, переработки, собеседования. Никого не хочу обидеть, зову поспорить.</p>'
+         + (f'<div class="notes">{feed}</div>' if notes else empty("Заметки скоро появятся.")),
+         here="/work/", desc="Заметки ворчуна — колонка Павла Малькова об айтишных порядках")
+    return notes
+
+
+def build_work(grumbler=()):
     meta, body = read(os.path.join(SRC, "work.md"))
     data = load("work.json", {"ai": [], "pet": []})
+    gr = project_list([{"title": GRUMBLER, "url": "/work/vorchun/",
+                        "tag": plural(len(grumbler), "заметка", "заметки", "заметок"),
+                        "about": "Ворчливая колонка об айтишных порядках: созвоны, менеджеры, переработки, собеседования."}]) if grumbler else ""
     page("/work/", "Работа",
          f'<h1>Работа</h1><div class="prose">{md(body)}</div>'
          '<p class="label">ИИ в работе аналитика</p>' + project_list(data.get("ai", []))
+         + (f'<p class="label">{GRUMBLER}</p>' + gr if gr else "")
          + '<p class="label">Пет-проекты</p>' + project_list(data.get("pet", [])),
          here="/work/", desc=meta.get("description", ""))
 
@@ -316,7 +367,7 @@ def main():
         shutil.copy("CNAME", f"{OUT}/CNAME")
     posts = build_blog()
     build_about(posts)
-    build_work()
+    build_work(build_grumbler())
     build_work_articles()
     build_creative()
     build_404()
