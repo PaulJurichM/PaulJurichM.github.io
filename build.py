@@ -54,7 +54,8 @@ def table(lines):
 
 def md(body):
     """Небольшой Markdown: абзацы, ## и ### заголовки, списки «- » и «1. », цитаты «> », ссылки,
-    картинки, курсив, `код`, таблицы «| a | b |», блоки ``` и метка статуса «@ текст»."""
+    картинки, курсив, `код`, таблицы «| a | b |», блоки ```, метка статуса «@ текст»
+    и треки «♪ [Название](/ссылка/) | /путь.mp3 | подпись»."""
     fences = []
 
     def keep(m):
@@ -79,6 +80,18 @@ def md(body):
                 out.append(f"<h{lvl}>{inline(lines[0][lvl + 1:].strip())}</h{lvl}>")
             lines = lines[1:]
         if not lines:
+            continue
+        if all(l.startswith("♪ ") for l in lines):
+            # треки: «♪ [Название](/ссылка/) | /путь.mp3 | подпись»
+            cards = []
+            for l in lines:
+                parts = [x.strip() for x in l[2:].split("|")]
+                name, src = parts[0], parts[1] if len(parts) > 1 else ""
+                note = parts[2] if len(parts) > 2 else ""
+                cards.append(f'<li><div class="tt">{inline(name)}</div>'
+                             + (f'<p>{inline(note)}</p>' if note else "")
+                             + f'<audio controls preload="none" src="{html.escape(src)}"></audio></li>')
+            out.append('<ul class="tracks">' + "".join(cards) + "</ul>")
             continue
         if len(lines) >= 2 and all(l.strip().startswith("|") for l in lines) and re.fullmatch(r"[|\s:-]+", lines[1].strip()):
             out.append(table(lines))
