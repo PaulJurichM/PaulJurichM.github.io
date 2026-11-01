@@ -3,7 +3,7 @@ name: Сборка сайта
 on:
   push:
     branches: [main]
-    paths: ["src/**", "assets/**", "build.py"]
+    paths: ["src/**", "assets/**", "static/**", "build.py"]
   workflow_dispatch:
 
 permissions:

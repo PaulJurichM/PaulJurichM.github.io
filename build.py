@@ -422,6 +422,9 @@ def main():
     shutil.copy("assets/favicon.ico", f"{OUT}/favicon.ico")  # для страниц без своей иконки (хронотопы и др.)
     if os.path.exists("CNAME"):
         shutil.copy("CNAME", f"{OUT}/CNAME")
+    if os.path.isdir("static"):  # файлы в корень сайта как есть (подтверждение Google и т. п.)
+        for f in os.listdir("static"):
+            shutil.copy(os.path.join("static", f), f"{OUT}/{f}")
     posts = build_blog()
     build_about(posts)
     build_work(build_grumbler())
