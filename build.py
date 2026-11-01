@@ -14,7 +14,7 @@ MONTHS = "января февраля марта апреля мая июня и
 SITE_URL = "https://malari.me"
 OG_IMAGE = "/media/pavel.jpg"   # картинка превью по умолчанию
 # Коды подтверждения прав в Яндекс Вебмастере и Google Search Console (только сам код из meta-тега)
-YANDEX_VERIFY = ""
+YANDEX_VERIFY = "d1ad0612ff50b272"
 GOOGLE_VERIFY = ""
 # Карты сайтов разделов, которые живут в своих репозиториях (попадают в robots.txt)
 SITEMAPS = ["/sitemap.xml", "/books/sitemap.xml"]
