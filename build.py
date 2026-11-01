@@ -11,6 +11,15 @@ NAME = "Павел Мальков"
 PEN = "Павел Юрич"
 MONTHS = "января февраля марта апреля мая июня июля августа сентября октября ноября декабря".split()
 
+SITE_URL = "https://malari.me"
+OG_IMAGE = "/media/pavel.jpg"   # картинка превью по умолчанию
+# Коды подтверждения прав в Яндекс Вебмастере и Google Search Console (только сам код из meta-тега)
+YANDEX_VERIFY = ""
+GOOGLE_VERIFY = ""
+# Карты сайтов разделов, которые живут в своих репозиториях (попадают в robots.txt)
+SITEMAPS = ["/sitemap.xml", "/books/sitemap.xml"]
+URLS = []  # адреса страниц для sitemap.xml
+
 NAV = [("/blog/", "Блог"), ("/work/", "Работа"), ("/creative/", "Творчество")]
 
 
@@ -123,7 +132,7 @@ def esc(s):
 
 # ---------- каркас страницы ----------
 
-def page(path, title, content, here="", desc="", extra=""):
+def page(path, title, content, here="", desc="", extra="", image=""):
     cur = ' aria-current="page"'
     nav = "".join(f'<a href="{u}"{cur if here == u else ""}>{t}</a>' for u, t in NAV)
     full = f"{title} — {NAME}" if title else NAME
@@ -134,7 +143,7 @@ def page(path, title, content, here="", desc="", extra=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(full)}</title>
 <meta name="description" content="{esc(desc)}">
-<script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}}})();</script>
+{seo(path, full, desc, image)}<script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -161,6 +170,40 @@ def page(path, title, content, here="", desc="", extra=""):
     dest = os.path.join(OUT, path.strip("/"), "index.html") if not path.endswith(".html") else os.path.join(OUT, path.strip("/"))
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     open(dest, "w", encoding="utf-8").write(doc)
+
+
+def seo(path, title, desc, image):
+    """Каноническая ссылка, карточка Open Graph и коды подтверждения (на главной)."""
+    if path.endswith("404.html"):
+        return '<meta name="robots" content="noindex">\n'
+    url = SITE_URL + path
+    URLS.append(url)
+    img = image or OG_IMAGE
+    img = img if img.startswith("http") else SITE_URL + img
+    out = (f'<link rel="canonical" href="{url}">\n'
+           f'<meta property="og:type" content="{"website" if path == "/" else "article"}">\n'
+           f'<meta property="og:site_name" content="{NAME}">\n'
+           f'<meta property="og:locale" content="ru_RU">\n'
+           f'<meta property="og:title" content="{esc(title)}">\n'
+           f'<meta property="og:description" content="{esc(desc)}">\n'
+           f'<meta property="og:url" content="{url}">\n'
+           f'<meta property="og:image" content="{img}">\n'
+           f'<meta name="twitter:card" content="summary_large_image">\n')
+    if path == "/":
+        if YANDEX_VERIFY:
+            out += f'<meta name="yandex-verification" content="{YANDEX_VERIFY}">\n'
+        if GOOGLE_VERIFY:
+            out += f'<meta name="google-site-verification" content="{GOOGLE_VERIFY}">\n'
+    return out
+
+
+def write_robots():
+    rows = "".join(f"<url><loc>{html.escape(u)}</loc></url>\n" for u in URLS)
+    open(f"{OUT}/sitemap.xml", "w", encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}</urlset>\n')
+    open(f"{OUT}/robots.txt", "w", encoding="utf-8").write(
+        "User-agent: *\nAllow: /\n\n" + "".join(f"Sitemap: {SITE_URL}{m}\n" for m in SITEMAPS))
 
 
 def crumbs(*items):
@@ -211,7 +254,8 @@ def build_blog():
         page(f"/blog/{p['slug']}/", p["title"],
              crumbs(("/blog/", "Блог")) + f'<article class="prose"><h1>{esc(p["title"])}</h1>'
              f'<p class="meta">{rudate(p["date"])}</p>{md(p["body"])}</article>',
-             here="/blog/", desc=p["summary"])
+             here="/blog/", desc=p["summary"],
+             image=(re.search(r"!\[[^\]]*\]\(([^)\s]+)\)", p["body"]) or [None, ""])[1])
     items = "".join(f'<li><a href="/blog/{p["slug"]}/"><b>{esc(p["title"])}</b><small>{rudate(p["date"])}</small>'
                     + (f'<span>{esc(p["summary"])}</span>' if p["summary"] else "") + "</a></li>" for p in posts)
     page("/blog/", "Блог",
@@ -384,6 +428,7 @@ def main():
     build_work_articles()
     build_creative()
     build_404()
+    write_robots()
     print(f"Готово: заметок {len(posts)} → {OUT}/")
 
 

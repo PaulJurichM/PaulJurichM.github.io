@@ -15,3 +15,5 @@
 
 Остальные разделы живут в своих репозиториях и открываются по путям: `/books/` (проза), `/hronotope/`, `/CloudAtlas/`, `/hp/`, `/morse-encyclopedia/`, `/AiDriven/`, `/architect-study-plan/`.
 В них не должно быть файла CNAME, а ссылки внутри должны быть относительными или от корня.
+
+Поиск: `build.py` пишет каноническую ссылку и карточку Open Graph на каждой странице, `docs/sitemap.xml` и `docs/robots.txt` (в нём же ссылка на карту прозы `/books/sitemap.xml`). Коды подтверждения Яндекс Вебмастера и Google Search Console вписываются в `YANDEX_VERIFY` и `GOOGLE_VERIFY` в начале `build.py`.

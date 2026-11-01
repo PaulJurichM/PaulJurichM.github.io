@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://malari.me/sitemap.xml
+Sitemap: https://malari.me/books/sitemap.xml
